@@ -1,0 +1,7 @@
+# backup trash
+*~
+
+# compiled files
+*.o
+bin
+main

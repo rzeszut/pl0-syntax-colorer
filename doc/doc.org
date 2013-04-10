@@ -1,0 +1,76 @@
+#+TITLE: Skaner plików ini
+
+* Tabela tokenów
+| Lp. | Kod   | Opis     |
+|-----+-------+----------|
+|   1 | Ident | L{L\C}   |
+|   2 | Cyfra | C{C}     |
+|   3 | Tekst | "{zn}"   |
+|   4 | Kom   | #{zn}EOL |
+|   5 | Lnk   | [        |
+|   6 | Pnk   | ]        |
+|   7 | Równe | =        |
+|   8 | EOF   | EOF      |
+|   9 | ERROR |          |
+
++ L -- litera
++ C -- cyfra
++ {...} -- 0 lub więcej
++ \ -- lub
++ zn - dowolny znak
+
+* Kompilacja C z Adą
++ Kompilator:
+  : gnat
++ Kompilacja
+  : gnatmake main.adb
++ Pliki:
+  + =ads= -- specyfikacja
+  + =adb= -- implementacja
++ Tworzenie specyfikacji ady:
+  : gcc -c -fdump-ada-spec -C file.h
+  : g++ -c -fdump-ada-spec -C file.h
+  : gcc -c -fdump-ada-spec-slim -C file.h
++ Parser: [[http://home.agh.edu.pl/~jpi/download/student/]]
+
+* PL/0
+** Tablica tokenów
+| Lp. | Kod        | Opis           | Pattern              |
+|-----+------------+----------------+----------------------|
+|     | IDENT      | Identyfikator  | [a-zA-Z][a-zA-Z0-9]* |
+|     | NUMBER     | Liczba         | [0-9]+               |
+|     | KEYWORD    | Słowo kluczowe | (jeden z listy)      |
+|     | DOT        | Kropka         | .                    |
+|     | COMMA      | Przecinek      | ,                    |
+|     | SEMICOLON  | Średnik        | ;                    |
+|     | ASSIGNMENT | :=             | :=                   |
+|     | EQ         | =              | =                    |
+|     | NEQ        | #              | #                    |
+|     | LT         | <              | <                    |
+|     | GT         | >              | >                    |
+|     | LE         | <=             | <=                   |
+|     | GE         | >=             | >=                   |
+|     | DIV        | /              | /                    |
+|     | MUL        | *              | *                    |
+|     | SUB        | -              | -                    |
+|     | ADD        | +              | +                    |
+|     | LEFTPAREN  | (              | (                    |
+|     | LEFTPAREN  | )              | )                    |
+|     | SPACE      | Spacja         |                      |
+|     | EOL        | Koniec linii   | \n                   |
+|     | EOF        | Koniec pliku   |                      |
+|     | ERROR      | Błąd           |                      |
+
+** Lista słów kluczowych
++ const
++ var
++ procedure
++ call
++ begin
++ end
++ if
++ then
++ while
++ do
++ odd
+
