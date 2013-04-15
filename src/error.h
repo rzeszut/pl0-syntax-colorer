@@ -10,7 +10,7 @@ typedef enum {
 } error_type_t;
 
 /** Error structure. */
-struct error_t {
+struct error {
     error_type_t type;
     char c;
 };
@@ -20,6 +20,6 @@ struct error_t {
  * \param file Output stream.
  * \param error Error to print.
  */
-void print_error(FILE *file, struct error_t *error);
+void print_error(FILE *file, struct error *error);
 
 #endif // ERROR_H

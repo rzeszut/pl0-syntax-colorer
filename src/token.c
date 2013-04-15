@@ -18,8 +18,8 @@ static const char *keywords[] = {
     "ODD"
 };
 
-struct token_t *create_token(type_t type) {
-    struct token_t *ret = malloc(sizeof(struct token_t));
+struct token *create_token(type_t type) {
+    struct token *ret = malloc(sizeof(struct token));
     ret->type = type;
     
     switch (type) {
@@ -39,7 +39,7 @@ struct token_t *create_token(type_t type) {
     return ret;
 }
 
-void free_token(struct token_t *token)  {
+void free_token(struct token *token)  {
     switch (token->type) {
     case IDENT:
         free(token->ident);
@@ -50,12 +50,12 @@ void free_token(struct token_t *token)  {
     free(token);
 }
 
-void set_line_column(struct token_t *token, unsigned line, unsigned column)  {
+void set_line_column(struct token *token, unsigned line, unsigned column)  {
     token->line = line;
     token->column = column;
 }
 
-void print_token(FILE *file, struct token_t *token) {
+void print_token(FILE *file, struct token *token) {
     fprintf(file, "(%d, %d) ", token->line, token->column);
 
     switch (token->type) {
@@ -155,7 +155,7 @@ void print_token(FILE *file, struct token_t *token) {
     fprintf(file, "\n");
 }
 
-void token_to_str(struct token_t *token, char *buffer, unsigned size) {
+void token_to_str(struct token *token, char *buffer, unsigned size) {
     switch (token->type) {
     case IDENT:
         memcpy(buffer, token->ident,

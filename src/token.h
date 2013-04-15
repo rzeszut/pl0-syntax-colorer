@@ -95,7 +95,7 @@ typedef enum {
 } keyword_t;
 
 /** The token structure. */
-struct token_t {
+struct token {
     /** Type of the token. */
     type_t type;
     
@@ -116,7 +116,7 @@ struct token_t {
         keyword_t keyword;
         
         /** Or structure containing error info. */
-        struct error_t error;
+        struct error error;
     };
 };
 
@@ -125,13 +125,13 @@ struct token_t {
  * \param type Type.
  * \return New token.
  */
-struct token_t *create_token(type_t type);
+struct token *create_token(type_t type);
 
 /**
  * Frees the memory.
  * \param token Token.
  */
-void free_token(struct token_t *token);
+void free_token(struct token *token);
 
 /**
  * Sets column and line members in token.
@@ -139,14 +139,14 @@ void free_token(struct token_t *token);
  * \param line Line number.
  * \param column Column number.
  */
-void set_line_column(struct token_t *token, unsigned line, unsigned column);
+void set_line_column(struct token *token, unsigned line, unsigned column);
 
 /**
  * Prints token info to the file.
  * \param file Output stream.
  * \param token Token to print.
  */
-void print_token(FILE *file, struct token_t *token);
+void print_token(FILE *file, struct token *token);
 
 /**
  * Prints a string representation of the token ot the buffer.
@@ -154,7 +154,7 @@ void print_token(FILE *file, struct token_t *token);
  * \param buffer Buffer.
  * \param size The size of the buffer.
  */
-void token_to_str(struct token_t *token, char *buffer, unsigned size);
+void token_to_str(struct token *token, char *buffer, unsigned size);
 
 /**
  * Returns a string representing the keyword.
