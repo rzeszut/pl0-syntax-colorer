@@ -1,8 +1,8 @@
 #include "xml.h"
 
-int __o = 0;
+int __xml_tag_open = 0;
 
-void print_opening_tag(FILE *file, int closep, const char *tag, ...) {
+void print_opening_tag(FILE *file, bool closep, const char *tag, ...) {
     va_list vl;
     const char *attr;
     const char *val;
@@ -12,6 +12,9 @@ void print_opening_tag(FILE *file, int closep, const char *tag, ...) {
     va_start(vl, tag);
     while ((attr = va_arg(vl, const char *))) {
         val = va_arg(vl, const char *);
+        if (!val) {
+            break;
+        }
         fprintf(file, " %s=\"%s\"", attr, val);
     }
     va_end(vl);

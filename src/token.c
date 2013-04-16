@@ -3,7 +3,6 @@
 
 #include "token.h"
 
-
 static const char *keywords[] = {
     "CONST",
     "VAR",
@@ -64,7 +63,7 @@ void print_token(FILE *file, struct token *token) {
         break;
 
     case NUMBER:
-        fprintf(file, "%d", token->number);
+        fprintf(file, "NUMBER: %d", token->number);
         break;
 
     case KEYWORD:

@@ -1,15 +1,26 @@
 #include "xml.h"
+#include "token_html.h"
 
 int main(int argc, char **argv) {
-    TAG(stdout, "div", "class", "some-div", "id", "asdf") {
-        TAG(stdout, "p") {
-            fprintf(stdout, "Lorem ipsum...");
-        }
-        print_escaped(stdout, "<&>\"");
-        STAG(stdout, "br");
+    FILE *file = NULL;
+    FILE *out = NULL;
+    
+    if (argc < 2) {
+        fprintf(stderr, "Pass filename as argument.\n");
+        return 1;
+    }
+    file = fopen(argv[1], "r");
+    
+    if (argc == 3) {
+        out = fopen(argv[2], "w");
+    } else {
+        out = stdout;
     }
 
-    fprintf(stdout, "\n");
+    scan_and_print_tokens(argc > 1 ? argv[1] : "untitled", file, out);
+
+    fclose(file);
+    fclose(out);
     
     return 0;
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><title>square.pl</title><style type="text/css">.code { white-space: pre; font-family: "Courier", monospace; }.code .keyword { color: blue; font-weight: bold; }.code .number { color: #a66; }.code .operator { color: gray; }.code .error { color: red; font-weight: bold; }</style></head><body><div class="code"><span class="keyword">VAR</span> x, squ;
+ 
+<span class="keyword">PROCEDURE</span> square;
+<span class="keyword">BEGIN</span>
+   squ <span class="operator">:=</span> x <span class="operator">*</span> x
+<span class="keyword">END</span>;
+ 
+<span class="keyword">BEGIN</span>
+   x <span class="operator">:=</span> <span class="number">1</span>;
+   <span class="keyword">WHILE</span> x <span class="operator"><=</span> <span class="number">10</span> <span class="keyword">DO</span>
+   <span class="keyword">BEGIN</span>
+      <span class="keyword">CALL</span> square;
+      WriteLn squ;
+      x <span class="operator">:=</span> x <span class="operator">+</span> <span class="number">1</span>
+   <span class="keyword">END</span>
+<span class="keyword">END</span>.
+</div></body></html>

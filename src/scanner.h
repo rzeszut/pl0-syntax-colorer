@@ -2,6 +2,7 @@
 #define SCANNER_H
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "token.h"
 
@@ -11,6 +12,7 @@ struct scanner {
     char next;
     unsigned line;
     unsigned column;
+    bool new_line_encoutered;
 };
 
 struct scanner *create_scanner(FILE *file);
