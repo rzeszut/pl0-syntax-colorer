@@ -1,5 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <ctype.h>
 
 #include "token.h"
 
@@ -16,6 +18,15 @@ static const char *keywords[] = {
     "DO",
     "ODD"
 };
+
+static bool string_compare_case_insensitive(const char *s1, const char *s2) {
+    for ( ; toupper(*s1) == toupper(*s2); s1++, s2++) {
+        if (*s1 == '\0') {
+            return true;
+        }
+    }
+    return *s1 == *s2;
+}
 
 struct token *create_token(type_t type) {
     struct token *ret = malloc(sizeof(struct token));
@@ -259,7 +270,7 @@ keyword_t str_to_keyword(const char *str) {
     int i = 0;
     
     for (; i <= ODD; ++i) {
-        if (!strcmp(str, keywords[i])) {
+        if (string_compare_case_insensitive(str, keywords[i])) {
             ret = i;
             break;
         }
