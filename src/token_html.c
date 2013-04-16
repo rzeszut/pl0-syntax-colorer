@@ -61,25 +61,25 @@ static void print_token_html(FILE *out, struct token *token) {
 
     case LT:
         TAG(out, "span", "class", "operator") {
-            fputs("<", out);
+            print_escaped(out, "<");
         }
         break;
 
     case GT:
         TAG(out, "span", "class", "operator") {
-            fputs(">", out);
+            print_escaped(out, ">");
         }
         break;
 
     case LE:
         TAG(out, "span", "class", "operator") {
-            fputs("<=", out);
+            print_escaped(out, "<=");
         }
         break;
 
     case GE:
         TAG(out, "span", "class", "operator") {
-            fputs(">=", out);
+            print_escaped(out, ">=");
         }
         break;
 
