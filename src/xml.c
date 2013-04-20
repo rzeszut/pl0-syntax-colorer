@@ -1,6 +1,6 @@
 #include "xml.h"
 
-int __xml_tag_open = 0;
+bool __xml_tag_open = false;
 
 void print_opening_tag(FILE *file, bool closep, const char *tag, ...) {
     va_list vl;

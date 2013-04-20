@@ -5,14 +5,14 @@
 #include <stdarg.h>
 #include <stdbool.h>
 
-#define TAG(file, tag, ...) if ((__xml_tag_open = 0)) {} else       \
+#define TAG(file, tag, ...) if ((__xml_tag_open = false)) {} else       \
         for (print_opening_tag(file, false, tag, ##__VA_ARGS__, NULL);  \
-             !__xml_tag_open;                                       \
-             print_closing_tag(file, tag), __xml_tag_open = 1)
+             !__xml_tag_open;                                           \
+             print_closing_tag(file, tag), __xml_tag_open = true)
 
 #define CTAG(file, tag, ...) print_opening_tag(file, true, tag, ##__VA_ARGS__, NULL)
 
-extern int __xml_tag_open;
+extern bool __xml_tag_open;
 
 /**
  * Prints a tag opening (<tag>) to the file.
@@ -31,6 +31,11 @@ void print_opening_tag(FILE *file, bool closep, const char *tag, ...);
  */
 void print_closing_tag(FILE *file, const char *tag);
 
+/**
+ * Prints escaped string to the file.
+ * \param file File.
+ * \param str String to escape.
+ */
 void print_escaped(FILE *file, const char *str);
 
 #endif // XML_H
